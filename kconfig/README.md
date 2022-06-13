@@ -34,6 +34,7 @@ Put this in your `.bashrc`/`.zshrc`
 
 ```bash
 alias kconfig="/path/to/kconfig/kconfig.sh"
+alias klastconfig="OVERWRITE_LAST=true /path/to/kconfig/kconfig.sh"
 
 kset() {
   local KUBE_NUM="$(ls /tmp/kubeconfigs 2>/dev/null | tail -1 | grep -Eo "[0-9]*")"
