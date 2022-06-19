@@ -27,7 +27,7 @@ if [[ -z "${POD_NAME}" ]]; then
 fi
 
 
-trap cleanup INT
+trap cleanup INT TERM EXIT
 
 function cleanup() {
     processes=$(ps -O cmd | grep "oc logs -f -n ${NS} ${POD_NAME}" | grep -v grep | sed 's/^\s//' | cut -d' ' -f1)
@@ -65,5 +65,3 @@ if [[ -n "${NOVIS}" ]]; then
 else
     lnav ${LOG_FILES}
 fi
-
-cleanup
