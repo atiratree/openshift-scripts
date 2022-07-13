@@ -7,6 +7,7 @@
 
 ### Optional
 
+- podman or docker
 - viddy
 - lnav
 

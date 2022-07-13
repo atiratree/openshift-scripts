@@ -15,16 +15,25 @@ FORWARDED_IMAGE_REGISTRY="localhost:5000"
 
 
 echo "podman authenticating:"
-podman login --tls-verify=false -u kubeadmin -p "${ACCESS_TOKEN}" "${IMAGE_REGISTRY}"
-
-echo "docker authenticating:"
-set +e
-  docker login -u kubeadmin -p "${ACCESS_TOKEN}" "${FORWARDED_IMAGE_REGISTRY}"
-  EXIT_CODE=$?
-set -e
-
-if [[ ${EXIT_CODE} -ne 0 ]]; then
-    echo "for docker login please use oc port-forward --namespace openshift-image-registry service/image-registry 5000:5000"
+if ! type podman &> /dev/null; then
+  echo "podman not found: skipping..." >&2
+else
+  podman login --tls-verify=false -u kubeadmin -p "${ACCESS_TOKEN}" "${IMAGE_REGISTRY}"
 fi
 
-exit ${EXIT_CODE}
+echo "docker authenticating:"
+if ! type docker &> /dev/null; then
+  echo "docker not found: skipping..." >&2
+else
+  set +e
+    docker login -u kubeadmin -p "${ACCESS_TOKEN}" "${FORWARDED_IMAGE_REGISTRY}"
+    EXIT_CODE=$?
+
+    if [[ ${EXIT_CODE} -ne 0 ]]; then
+        echo "for docker login please use oc port-forward --namespace openshift-image-registry service/image-registry 5000:5000"
+    fi
+
+    exit ${EXIT_CODE}
+  set -e
+fi
+
