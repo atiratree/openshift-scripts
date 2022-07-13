@@ -4,11 +4,11 @@
 ## Prerequisites
 
 - oc
-- lnav
 
 ### Optional
 
 - viddy
+- lnav
 
 ## Usage
 

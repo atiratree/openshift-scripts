@@ -26,6 +26,10 @@ if [[ -z "${POD_NAME}" ]]; then
     exit 1
 fi
 
+if ! type lnav &> /dev/null; then
+    echo "lnav command command not found: skipping visualisation" >&2
+    NOVIS=true
+fi
 
 trap cleanup INT TERM EXIT
 
@@ -50,7 +54,7 @@ echo "following..."
 for pod in ${PODS}; do
     CONTAINERS="${CONTAINER}"
     if [[ -z "${CONTAINER}" ]]; then
-        CONTAINERS=$(kubectl get pods -n ${NS} ${pod} -o jsonpath='{.spec.containers[*].name}')
+        CONTAINERS=$(oc get pods -n ${NS} ${pod} -o jsonpath='{.spec.containers[*].name}')
     fi
     for container in ${CONTAINERS}; do
         log_file="${RESULT_DIR}/${NS_SHORT}_${timestamp}_${pod}_${container}"
