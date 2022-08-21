@@ -20,9 +20,13 @@ case "$NS" in
     # cluster-openshift-controller-manager-operator
     ocmo) NS=openshift-controller-manager-operator ;;
     ocm) NS=openshift-controller-manager ;;
+    # openshift-route-controller-manager
+    rcm) NS=openshift-route-controller-manager ;;
     # etcd-operator
     etcdo) NS=openshift-etcd-operator ;;
     etcd) NS=openshift-etcd ;;
+    # openshift-monitoring
+    monitoring) NS=openshift-monitoring ;;
 
     # cluster-kube-descheduler-operator
     *) ;;

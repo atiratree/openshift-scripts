@@ -21,9 +21,13 @@ case "$NS" in
     # ocmo cluster-openshift-controller-manager-operator
     openshift-controller-manager-operator) NS_SHORT=ocmo ;;
     openshift-controller-manager) NS_SHORT=ocm ;;
+    # openshift-route-controller-manager
+    openshift-route-controller-manager) NS_SHORT=rcm ;;
     # etcdo etcd-operator
     openshift-etcd-operator) NS_SHORT=etcdo ;;
     openshift-etcd) NS_SHORT=etcd ;;
+    # monitoring openshift-monitoring
+    openshift-monitoring) NS_SHORT=monitoring ;;
 
     # cluster-kube-descheduler-operator
     *) ;;

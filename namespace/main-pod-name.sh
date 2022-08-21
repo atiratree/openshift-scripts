@@ -21,9 +21,13 @@ case "$NS" in
     # ocmo cluster-openshift-controller-manager-operator
     openshift-controller-manager-operator) POD_NAME=openshift-controller-manager-operator ;;
     openshift-controller-manager) POD_NAME=controller-manager ;;
+    # rcm openshift-route-controller-manager
+    openshift-route-controller-manager) POD_NAME=route-controller-manager ;;
     # etcdo etcd-operator
     openshift-etcd-operator) POD_NAME=etcd-operator ;;
     openshift-etcd) POD_NAME=etcd ;;
+    # monitoring openshift-monitoring
+    openshift-monitoring) POD_NAME=prometheus-k8s ;;
 
     # cluster-kube-descheduler-operator
     *) ;;
