@@ -34,7 +34,7 @@ case "$NS" in
     # run-once-duration-override-operator
     rodoo) NS=run-once-duration-override-operator ;;
     # run-once-duration-override
-    rodo) NS=run-once-duration-override ;;
+    rodo) NS=run-once-duration-override-operator ;;
     # cluster-kube-descheduler-operator
     *) ;;
 esac

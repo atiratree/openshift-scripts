@@ -6,8 +6,8 @@ SCRIPTS_DIR="$(dirname "$(readlink -f "$0")")"
 NAMESPACE_DIR="$(realpath "${SCRIPTS_DIR}/../namespace")"
 
 NS="$("${NAMESPACE_DIR}"/shortcut-to-ns.sh ${1} )"
-POD_NAME="$("${NAMESPACE_DIR}"/main-pod-name.sh ${NS} )"
-NS_SHORT="$("${NAMESPACE_DIR}"/ns-to-shortcut.sh ${NS} )"
+COMPONENT_SHORTCUT="$("${NAMESPACE_DIR}"/ns-to-shortcut.sh ${1} )"
+POD_NAME="$("${NAMESPACE_DIR}"/shortcut-to-main-pod-name.sh ${COMPONENT_SHORTCUT} )"
 CONTAINER="${CONTAINER:-}"
 NOVIS="${NOVIS:-}" # no visualization in lnav
 
@@ -16,7 +16,7 @@ if [[ -z "${NS}" ]]; then
     exit 1
 fi
 
-if [[ -z "${NS_SHORT}" ]]; then
+if [[ -z "${COMPONENT_SHORTCUT}" ]]; then
     echo "namespace shortcut required" >&2
     exit 1
 fi
@@ -44,7 +44,7 @@ PODS="$(oc get pods -n ${NS} | grep Running | grep ${POD_NAME} | grep -v guard |
 LOG_FILES=""
 
 timestamp=$(date +'%FT%T')
-RESULT_DIR="/tmp/${NS_SHORT}_${timestamp}"
+RESULT_DIR="/tmp/${COMPONENT_SHORTCUT}_${timestamp}"
 
 mkdir -p "${RESULT_DIR}"
 
@@ -57,7 +57,7 @@ for pod in ${PODS}; do
         CONTAINERS=$(oc get pods -n ${NS} ${pod} -o jsonpath='{.spec.containers[*].name}')
     fi
     for container in ${CONTAINERS}; do
-        log_file="${RESULT_DIR}/${NS_SHORT}_${timestamp}_${pod}_${container}"
+        log_file="${RESULT_DIR}/${COMPONENT_SHORTCUT}_${timestamp}_${pod}_${container}"
         oc logs -f -n ${NS} $pod -c $container  > $log_file &
         LOG_FILES="$LOG_FILES $log_file"
         echo $log_file
