@@ -28,6 +28,14 @@ case "$NS" in
     openshift-etcd) POD_NAME=etcd ;;
     # monitoring openshift-monitoring
     openshift-monitoring) POD_NAME=prometheus-k8s ;;
+    # cluster-authentication-operator
+    openshift-authentication-operator) POD_NAME=authentication-operator ;;
+    # oauth-apiserver
+    openshift-oauth-apiserver) POD_NAME=apiserver ;;
+    # run-once-duration-override-operator
+    run-once-duration-override-operator) POD_NAME=run-once-duration-override-operator ;;
+    # run-once-duration-override
+    run-once-duration-override) POD_NAME=runoncedurationoverride ;;
 
     # cluster-kube-descheduler-operator
     *) ;;

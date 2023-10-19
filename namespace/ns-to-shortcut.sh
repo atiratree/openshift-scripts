@@ -27,7 +27,15 @@ case "$NS" in
     openshift-etcd-operator) NS_SHORT=etcdo ;;
     openshift-etcd) NS_SHORT=etcd ;;
     # monitoring openshift-monitoring
-    openshift-monitoring) NS_SHORT=monitoring ;;
+    openshift-monitoring) NS_SHORT=monitoring ;;    
+    # cluster-authentication-operator
+    openshift-authentication-operator) NS_SHORT=autho ;;
+    # oauth-apiserver
+    openshift-oauth-apiserver) NS_SHORT=authas ;;
+    # run-once-duration-override-operator
+    run-once-duration-override-operator) NS_SHORT=rodoo ;;
+    # run-once-duration-override
+    run-once-duration-override) NS_SHORT=rodo ;;
 
     # cluster-kube-descheduler-operator
     *) ;;

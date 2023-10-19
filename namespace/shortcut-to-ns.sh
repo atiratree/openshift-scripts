@@ -27,7 +27,14 @@ case "$NS" in
     etcd) NS=openshift-etcd ;;
     # openshift-monitoring
     monitoring) NS=openshift-monitoring ;;
-
+    # cluster-authentication-operator
+    autho) NS=openshift-authentication-operator ;;
+    # oauth-apiserver
+    authas) NS=openshift-oauth-apiserver ;;
+    # run-once-duration-override-operator
+    rodoo) NS=run-once-duration-override-operator ;;
+    # run-once-duration-override
+    rodo) NS=run-once-duration-override ;;
     # cluster-kube-descheduler-operator
     *) ;;
 esac
