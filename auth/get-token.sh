@@ -14,7 +14,7 @@ tokenOpenShift(){
         exit 1
     fi
 
-    DOMAIN_URL="$(echo "${API_URL}" | sed 's/^.*api.//;s/:.*$//')"
+    DOMAIN_URL="$(echo "${API_URL}" | sed 's!^https://!!;s/api.//;s/:.*$//')"
     AUTHORIZE_URL="https://oauth-openshift.apps.${DOMAIN_URL}/oauth/authorize?client_id=openshift-challenging-client&response_type=token"
 
     ACCESS_TOKEN="$(curl  -u "kubeadmin:${KUBEADMIN_PASSWORD}" -H "X-CSRF-Token: ${RANDOM}"  -vk "${AUTHORIZE_URL}" 2>&1 | grep -Eo 'access_token=[^&]+' | sed 's/access_token=//')"
@@ -35,6 +35,23 @@ metadata:
   annotations:
     kubernetes.io/service-account.name: default
 type: kubernetes.io/service-account-token
+EOF
+
+    # add RBAC for cluster-admin
+    kubectl apply -f - > /dev/null  <<EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admin:default:default-token
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
 EOF
 
     # Wait for the token controller to populate the secret with a token:
