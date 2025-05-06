@@ -35,6 +35,8 @@ case "$NS" in
     rodoo) NS=run-once-duration-override-operator ;;
     # run-once-duration-override
     rodo) NS=run-once-duration-override-operator ;;
+    # jobset-operator
+    jso) NS=openshift-jobset-operator ;;
     # cluster-kube-descheduler-operator
     *) ;;
 esac

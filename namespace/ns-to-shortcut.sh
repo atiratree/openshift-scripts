@@ -35,6 +35,8 @@ case "$COMPONENT_SHORTCUT" in
     openshift-oauth-apiserver) COMPONENT_SHORTCUT=authas ;;
     # run-once-duration-override-operator
     run-once-duration-override-operator) COMPONENT_SHORTCUT=rodoo ;;
+    # jobset-operator
+    openshift-jobset-operator) COMPONENT_SHORTCUT=jso ;;
 
     # cluster-kube-descheduler-operator
     *) ;;

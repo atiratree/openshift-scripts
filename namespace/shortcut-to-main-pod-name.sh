@@ -36,6 +36,8 @@ case "$COMPONENT_SHORTCUT" in
     rodoo) POD_NAME=run-once-duration-override-operator ;;
     # rodo run-once-duration-override
     rodo) POD_NAME=runoncedurationoverride ;;
+    # jso jobset-operator
+    jso) POD_NAME=jobset-operator ;;
 
     # cluster-kube-descheduler-operator
     *) ;;
