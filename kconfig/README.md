@@ -44,7 +44,7 @@ kset() {
              /var/run/kubernetes/admin.kubeconfig \
              /home/user/.kube/config; do
       if [[ -e "${config}" ]]; then
-        /home/ansy/work/scripts/kconfig.sh "${config}"
+        ${HOME}/work/scripts/kconfig.sh "${config}"
         break
       fi
     done
