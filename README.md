@@ -35,6 +35,7 @@ project ks
 ### Cluster Management
 
 ```bash
+alias installerupdate='INSTALLER_DIR="${HOME}/work/clusters/openshift-install" "${HOME}/projects/openshift-scripts/cluster/openshift/update-installer.sh"'
 alias createcluster='export KUBECONFIG=${HOME}/work/clusters/cluster0/auth/kubeconfig; cp ${HOME}/work/{conf/ocpcred/install-config.yaml,clusters/cluster0/}; AWS_PROFILE=openshift-group-b openshift-install create cluster --dir ${HOME}/work/clusters/cluster0/ --log-level=debug; export KUBEADMIN_PASSWORD="$(cat ${HOME}/work/clusters/cluster0/auth/kubeadmin-password)"; DISABLE_CVO=false ${HOME}/path/to/openshift-scripts/cluster/openshift/initialize-cluster.sh username-cluster0'
 alias destroycluster='AWS_PROFILE=openshift-group-b openshift-install destroy cluster --dir ${HOME}/work/clusters/cluster0/ --log-level=debug; unset KUBECONFIG; unset KUBEADMIN_PASSWORD; ${HOME}/path/to/openshift-scripts/cluster/openshift/clean-after-deleted-cluster.sh username'
 ```
