@@ -4,7 +4,7 @@ set -e
 
 INSTALLER_DIR="${INSTALLER_DIR:-}"
 RELEASE_GRAPH_FILE="$(mktemp)"
-CHANNEL=${1:-4.20.0-0.ci} # 4.20.0-0.nightly
+CHANNEL=${1:-4.22.0-0.ci} # 4.20.0-0.nightly
 DOWNGRADE="${DOWNGRADE:-0}"
 
 trap cleanup INT TERM EXIT
